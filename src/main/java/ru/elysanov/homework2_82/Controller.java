@@ -19,9 +19,11 @@ public class Controller {
     }
 
 
-    //    @RequestMapping(path = "/employee")
     @GetMapping(path = "/add")
-    public String addEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName")  String lastName, @RequestParam("department") int department, @RequestParam("salary") int salary) {
+    public String addEmployee(@RequestParam("firstName") String firstName,
+                              @RequestParam("lastName")  String lastName,
+                              @RequestParam("department") int department,
+                              @RequestParam("salary") int salary) {
         try {
             return employeeService.addEmployee(firstName, lastName, department, salary);
         } catch (EmployeeStorageIsFullException exception) {
@@ -35,7 +37,10 @@ public class Controller {
 
 
     @GetMapping(path = "/remove")
-    public String removeEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName")  String lastName, @RequestParam("department") int department, @RequestParam("salary") int salary) {
+    public String removeEmployee(@RequestParam("firstName") String firstName,
+                                 @RequestParam("lastName")  String lastName,
+                                 @RequestParam("department") int department,
+                                 @RequestParam("salary") int salary) {
         try {
             return employeeService.removeEmployee(firstName, lastName, department, salary);
         } catch (EmployeeNotFoundException exception) {
@@ -46,7 +51,10 @@ public class Controller {
 
 
     @GetMapping(path = "/find")
-    public String findEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName")  String lastName, @RequestParam("department") int department, @RequestParam("salary") int salary) {
+    public String findEmployee(@RequestParam("firstName") String firstName,
+                               @RequestParam("lastName")  String lastName,
+                               @RequestParam("department") int department,
+                               @RequestParam("salary") int salary) {
         try {
             return employeeService.findEmployee(firstName, lastName, department, salary);
         } catch (EmployeeNotFoundException exception) {
@@ -55,22 +63,6 @@ public class Controller {
         }
     }
 
-//    по сути выводит все с разделением по отделам, но ГетМаппинг другой
-    @GetMapping(path = "/printAll")
-    public String printAllEmployees() {
-        return employeeService.printAllEmployees();
-    }
-
-    @GetMapping(path = "/departments/max-salary")
-    public String findHighestSalaryWorkerOfDepartment(@RequestParam("departmentId") int department) { return employeeService.findHighestSalaryWorkerOfDepartment(department);}
-
-    @GetMapping(path = "/departments/min-salary")
-    public String findMinimalSalaryWorkerOfDepartment(@RequestParam("departmentId") int department) { return employeeService.findMinimalSalaryWorkerOfDepartment(department);}
-
-    @GetMapping(path = "/departments/all")
-    String printEmployeesOfDepartment(@RequestParam("departmentId") int department) { return employeeService.printEmployeesOfDepartment(department);}
-
-// почему-то не запускается с тем же ГетМаппингом
-//    @GetMapping(path = "/departments/all")
-//    String printEmployeesOfDepartment() { return employeeService.printEmployeesOfAllDepartments();}
+    @GetMapping(path = "/print-all")
+    public String printAllEmployees() { return employeeService.printAllEmployees(); }
 }

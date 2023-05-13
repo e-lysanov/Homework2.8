@@ -52,45 +52,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public String printAllEmployees() {
         System.out.println(Employees.toString());
-        return "Сотрудники всех отделов: " + Employees;
-    }
-
-
-    //    реализовал метод по поиску самого низкооплачиваемого сотрудника в отделе
-    @Override
-    public String findMinimalSalaryWorkerOfDepartment(int department) {
-
-        final Optional<Employee> employee = Employees.stream()
-                .filter(e -> e.getDepartment() == department)
-                .min(Comparator.comparingInt(e -> e.getSalary()));
-
-        return "Сотрудник с наименьшей зарплатой в " + department + " отделе: " + employee;
-    }
-//
-//        реализовал метод по поиску самого высокооплачиваемого сотрудника в отделе
-    @Override
-    public String findHighestSalaryWorkerOfDepartment(int department) {
-
-        final Optional<Employee> employee = Employees.stream()
-                .filter(e -> e.getDepartment() == department)
-                .max(Comparator.comparingInt(e -> e.getSalary()));
-
-        return "Сотрудник с наибольшей зарплатой в " + department + " отделе: " + employee;
+        return "Все сотрудники: " + Employees;
     }
 
     @Override
-    public String printEmployeesOfDepartment(int department) {
-
-        final List<Employee> employeesOfDepartment = Employees.stream()
-                .filter(e -> e.getDepartment() == department)
-                .collect(Collectors.toList());
-        return "Сотрудники " + department + " отдела: " + employeesOfDepartment;
-    }
-
-
-    @Override
-    public String printEmployeesOfAllDepartments() {
-        return "Сотрудники всех отделов: " + Employees;
-    }
+    public List<Employee> getAllEmployees() { return Employees; }
 
 }
